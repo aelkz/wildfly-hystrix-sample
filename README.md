@@ -2,7 +2,8 @@
 
 __This example is based on the work of<br>
 https://github.com/siamaksade/wildfly-swarm-hystrix-example <br>
-This is the version of the original example for Wildfly/EAP without the usage of Wildfly Swarm.
+This is the version of the original example for Wildfly/EAP (the original version is for Wildfly Swarm).
+The implementation of Employee Service and Payroll Service is the same of the original version.
 Thanks for the big work!__
 
 Wildfly Hystrix sample is an implementation in java of the circuit breaker pattern.<br>
@@ -59,4 +60,4 @@ In order to generate some load to Payroll Service you can use the command:
 
 	$ ab -n 100 http://payroll-app-hystrix-wildfly.127.0.0.1.nip.io/payroll
 
-Hystrix dashboard will show if the circuit is open or closed during the execution of the test.
+Hystrix dashboard will show if the circuit is opened or closed during the execution of the test.
