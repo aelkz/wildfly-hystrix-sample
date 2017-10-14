@@ -19,9 +19,10 @@ This example is composed of:
 
 # Run on OpenShift
 
-Employee Service, Payroll Service and Turbine will be created as new app in OCP using the eap7 image
+Employee Service, Payroll Service and Turbine will be created as new app in OCP using the eap7 image (you can also use a wildfly image)
 
-Hystrix Dashboard will be created as new app in OCP using a docker image from docker hub: mlabouardy/hystrix-dashboard:latest
+Hystrix Dashboard will be created as new app in OCP using a docker image from docker hub: 
+__mlabouardy/hystrix-dashboard:latest__
 
 These are the commands to run on OCP to create the entire project:
 
@@ -49,9 +50,13 @@ http://payroll-app-hystrix-wildfly.127.0.0.1.nip.io/payroll
 The dashboard will be available at<br>
 http://hystrix-dashboard-hystrix-wildfly.127.0.0.1.nip.io/hystrix
 
-Hystrix Dashboard must be configured to add the stream from Turbine; the url of the stream is:<br>
+Hystrix dashboard must be configured to add the stream from Turbine; the url of the stream is:<br>
 http://<service_internal_ip>:8080/turbine-1.0.0-SNAPSHOT/turbine.stream
+
+# How to test
 
 In order to generate some load to Payroll Service you can use the command:
 
 	$ ab -n 100 http://payroll-app-hystrix-wildfly.127.0.0.1.nip.io/payroll
+
+Hystrix dashboard will show if the circuit is open or closed during the execution of the test.
