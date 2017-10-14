@@ -2,13 +2,17 @@
 
 __This example is based on the work of<br>
 https://github.com/siamaksade/wildfly-swarm-hystrix-example <br>
+This is the version of the original example for Wildfly/EAP without the usage of Wildfly Swarm.
 Thanks for the big work!__
 
-This is the version of the original example for Wildfly/EAP without the usage of Wildfly Swarm.
+Wildfly Hystrix sample is an implementation in java of the circuit breaker pattern.<br>
+For additional details http://microservices.io/patterns/reliability/circuit-breaker.html
 
-Wildfly Example using Hystrix as the circuit-breaker. This example is composed of:
-* __Employee REST Service:__ JAX-RS service that returns the list of employees. This service randomly generates error and timed-out responses.
-* __Payroll REST Service:__ JAX-RS service that invokes Employee service using Hystrix
+The circuit breaker is implemented using the Netflix Hystrix library https://github.com/Netflix/Hystrix
+
+This example is composed of:
+* __Employee REST Service:__ service that returns the list of employees. This service randomly generates error and timed-out responses.
+* __Payroll REST Service:__ service that invokes Employee service using Netflix Hystrix
 * __Turbine:__ Netflix components for aggregating streams of json data
 * __Hystrix Dashboard:__ a dashboard for visualizing aggregated data streams
 
@@ -39,7 +43,6 @@ Employee service and Payroll service will exposed at:<br>
 http://employee-app-hystrix-wildfly.127.0.0.1.nip.io/employees<br>
 http://payroll-app-hystrix-wildfly.127.0.0.1.nip.io/payroll
 
-If you get an "Internal Server Error" for some of the Employee requests, it's by design! The service simulates a certain ration of errors and timeouts.
 
 # Hystrix Dashboard
 
@@ -49,6 +52,6 @@ http://hystrix-dashboard-hystrix-wildfly.127.0.0.1.nip.io/hystrix
 Hystrix Dashboard must be configured to add the stream from Turbine; the url of the stream is:<br>
 http://<service_internal_ip>:8080/turbine-1.0.0-SNAPSHOT/turbine.stream
 
-Generate some load on the Payroll service and monitor the endpoints through Hystrix Dashboard:
+In order to generate some load to Payroll Service you can use the command:
 
 	$ ab -n 100 http://payroll-app-hystrix-wildfly.127.0.0.1.nip.io/payroll
